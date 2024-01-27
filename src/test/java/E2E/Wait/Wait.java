@@ -51,4 +51,11 @@ public class Wait {
             throw new TimeoutException(element.getAccessibleName()+" is not clickable more than "+ TIMEOUT.toString());
         }
     }
+    public void forFrameToBeAvailableAndSwitchToIt(WebElement iframeElement) {
+        try {
+            setWait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframeElement));
+        } catch (TimeoutException e) {
+            throw new TimeoutException("Iframe is not available and switchable more than " + TIMEOUT.toString());
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package E2E.Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,7 @@ public class LoginDialogEmail extends StartPage {
 //        }
 //        throw new RuntimeException("Window with title not found.");
 //    }
+
 
     public void inputEmail(String email){
         emailAddressInputField.sendKeys(email);

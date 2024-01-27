@@ -20,6 +20,7 @@ public class LoginTest extends TestBase {
         startPage.waitForLoadingStartPage();
         startPage.hoverOverElement(app.driver);
         startPage.loggingInSystemWithCreatedUser();
+        //startPage.switchToIframe();
         loginDialogEmail = new LoginDialogEmail(app.driver);
         loginDialogEmail.inputEmail(email);
         loginDialogEmail.takeScreenshotOnLoginEmailDialog();
