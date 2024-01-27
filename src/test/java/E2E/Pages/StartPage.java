@@ -1,8 +1,8 @@
-package E2E.Pages.Login;
+package E2E.Pages;
 
 import E2E.Pages.BasePage;
+import E2E.Pages.LoginDialogPassword;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;

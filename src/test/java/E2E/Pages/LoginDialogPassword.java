@@ -1,11 +1,11 @@
-package E2E.Pages.Login;
+package E2E.Pages;
 
-import io.qameta.allure.AllureId;
+import E2E.Pages.LoginDialogEmail;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginDialogPassword extends LoginDialogEmail{
+public class LoginDialogPassword extends LoginDialogEmail {
     public LoginDialogPassword(WebDriver driver) {
         super(driver);
     }

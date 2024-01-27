@@ -1,6 +1,5 @@
-package E2E.Pages.Login;
+package E2E.Pages;
 
-import E2E.Pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,7 +31,7 @@ public class LoginDialogEmail extends StartPage {
 //    }
 
     public void inputEmail(String email){
-        setInput(emailAddressInputField,email);
+        emailAddressInputField.sendKeys(email);
     }
     public void clickOnWeiterButton(){
         weiterButton.click();
