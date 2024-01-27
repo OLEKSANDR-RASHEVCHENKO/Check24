@@ -40,18 +40,12 @@ public class StartPage extends BasePage {
         getWait().forVisibility(anmeldenButton);
     }
     public void switchToIframe() {
-        WebElement iframeElement = driver.findElement(By.xpath("//iframe[@class='c24-uli-loginlayer-iframe c24-nolazyload c24-ulill-connected']"));
+        WebElement iframeElement = driver.findElement(By.xpath("//iframe[@cd_frame_id_='64af7325707ece4ac9453a71985c7bc9']"));
         driver.switchTo().frame(iframeElement);
-        // Добавим ожидание в вашем классе
-        Wait wait = new Wait(driver);
-        wait.forFrameToBeAvailableAndSwitchToIt(iframeElement);
-        // Прокрутим страницу к элементу внутри iframe
-        //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", iframeElement);
     }
 
     public LoginDialogPassword loggingInSystemWithCreatedUser(){
         anmeldenButton.click();
-        switchToIframe();
         return new LoginDialogPassword(driver);
     }
 
