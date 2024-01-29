@@ -1,4 +1,4 @@
-package E2E;
+package e2e;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -11,12 +11,12 @@ public class ApplicationManager {
     protected void init(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("https://hotel.check24.de");
+        driver.get("https://www.check24.de");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-   // protected  void stop(){
-   //     driver.quit();
-    //}
+//    protected  void stop(){
+//        driver.quit();
+//    }
 }

@@ -1,6 +1,5 @@
-package E2E.Pages;
+package e2e.pages.loggingInSystemPage;
 
-import E2E.Pages.LoginDialogEmail;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,7 @@ public class LoginDialogPassword extends LoginDialogEmail {
     public LoginDialogPassword(WebDriver driver) {
         super(driver);
     }
-    @FindBy(xpath = "data-tid='page-title'")
+    @FindBy(xpath = "//*[@data-tid='page-title']")
     WebElement headerWillkomen;
     @FindBy(xpath = "//*[@data-tid='user-data']")
     WebElement userData;
@@ -24,8 +23,6 @@ public class LoginDialogPassword extends LoginDialogEmail {
 
     public void waiteForLoading(){
         getWait().forVisibility(headerWillkomen);
-        getWait().forVisibility(userData);
-        getWait().forClickable(ändernButton);
         getWait().forVisibility(passwordInputField);
         getWait().forClickable(anmeldenButtonInLoginDialog);
     }

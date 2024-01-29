@@ -1,6 +1,5 @@
-package E2E.Wait;
+package e2e.wait;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

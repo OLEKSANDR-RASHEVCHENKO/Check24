@@ -1,10 +1,7 @@
-package E2E.Pages;
+package e2e.pages.loggingInSystemPage;
 
-import E2E.Pages.BasePage;
-import E2E.Pages.LoginDialogPassword;
-import E2E.Wait.Wait;
+import e2e.pages.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,12 +14,10 @@ public class StartPage extends BasePage {
     @FindBy(xpath = "//*[@class='c24-header-content clearfix']")
     WebElement header;
 
-    @FindBy(xpath = "//*[@class='wireframeCustomerAreaGuest']//*[@class='c24-customer-layer c24-header-hover-layer']//*[@id='c24-meinkonto-anmelden']")
+    @FindBy(xpath = "//*[@class='c24-customer-layer c24-header-hover-layer']//*[@id='c24-meinkonto-anmelden']")
     WebElement anmeldenButton;
     @FindBy(xpath = "//*[text()='Geht klar']")
     WebElement cookiesAgreement;
-
-
 
     public void waitForLoadingStartPage(){
         getWait().forVisibility(header);
@@ -38,10 +33,6 @@ public class StartPage extends BasePage {
         Actions actions = new Actions(driver);
         actions.moveToElement(elementToHover).perform();
         getWait().forVisibility(anmeldenButton);
-    }
-    public void switchToIframe() {
-        WebElement iframeElement = driver.findElement(By.xpath("//iframe[@cd_frame_id_='64af7325707ece4ac9453a71985c7bc9']"));
-        driver.switchTo().frame(iframeElement);
     }
 
     public LoginDialogPassword loggingInSystemWithCreatedUser(){
