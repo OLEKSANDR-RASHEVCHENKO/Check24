@@ -6,6 +6,8 @@ import e2e.pages.loggingInSystemPage.AccProtectionPage;
 import e2e.pages.loggingInSystemPage.LoginDialogEmail;
 import e2e.pages.loggingInSystemPage.LoginDialogPassword;
 import e2e.pages.loggingInSystemPage.StartPage;
+import e2e.pages.reisePage.ReisePage;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,6 +17,7 @@ public class LoginTest extends BaseTest {
     LoginDialogPassword loginDialogPassword;
     AccProtectionPage accProtectionPage;
     HomePage homePage;
+
 
     @Test
     public void userCanLoginInSystem() {
@@ -43,6 +46,10 @@ public class LoginTest extends BaseTest {
         homePage.waitForLoadingOnHomePage();
         homePage.assertHeaderVisibility();
         homePage.takeScreenshotOnHomePage();
+
+
+
+
 
 
 

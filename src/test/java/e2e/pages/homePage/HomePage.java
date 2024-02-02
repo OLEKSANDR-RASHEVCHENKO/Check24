@@ -31,7 +31,7 @@ public class HomePage extends BasePage {
     }
     public ReisePage clickOnReiseButton(){
         reiseButton.click();
-        return new ReisePage();
+        return new ReisePage(driver);
     }
 
 
