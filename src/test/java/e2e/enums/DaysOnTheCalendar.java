@@ -35,11 +35,10 @@ public enum DaysOnTheCalendar {
     Enamuary_29th("29"),
     Enamuary_30th("30"),
     Enamuary_31st("31");
-
-    private final String listOfDays;
+    public final String listOfDays;
 
     DaysOnTheCalendar(String listOfDays) {
-        this.listOfDays = "//*[@data-day='" + listOfDays + "']";
+        this.listOfDays = listOfDays;
     }
     public String getListOfDays(){
         return listOfDays;

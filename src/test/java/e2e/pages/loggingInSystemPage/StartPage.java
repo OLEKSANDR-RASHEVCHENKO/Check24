@@ -39,5 +39,8 @@ public class StartPage extends BasePage {
         anmeldenButton.click();
         return new LoginDialogPassword(driver);
     }
+    public void clearSearchHistory() {
+        driver.manage().deleteAllCookies();
+    }
 
 }

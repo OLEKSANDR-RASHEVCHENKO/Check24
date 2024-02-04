@@ -1,11 +1,12 @@
 package e2e.pages.reisePage;
 
+import e2e.enums.DaysOnTheCalendar;
+import e2e.enums.MonthsOnTheCalendar;
+import e2e.enums.OnlyNameOfMonths;
 import e2e.pages.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.concurrent.TimeUnit;
 
 public class ReisePage extends BasePage {
     public ReisePage(WebDriver driver) {
@@ -29,18 +30,21 @@ public class ReisePage extends BasePage {
     WebElement inputAbflugHäfenField;
     @FindBy(xpath = "//*[@class='deleteLink']")
     WebElement alleAbflugHäfenLöshen;
-    @FindBy(xpath = "//*[@for='c24-travel-ac-airport-list-item0-0']")
-    WebElement scrollContent;
+    @FindBy(xpath = "//*[@id='c24-travel-ac-airport-button']")
+    WebElement übernehmenButtonOnFlugAbField;
+
     @FindBy(xpath = "//*[text()='Dresden']")
     WebElement clickOnFirstElementFlugAb;
     @FindBy(xpath = "//*[@class='c24-travel-single-date-input-overlay c24-travel-hidden']")
     WebElement reiseDatumButton;
+    @FindBy(xpath = "//*[@class='c24-travel-js-datefinder c24-travel-datefinder c24-travel-datepicker-instance-element c24-travel-c24-hidden']")
+    WebElement switchToWindowData;
 
     @FindBy(xpath = "//*[@class='c24-travel-js-control-slide-prev c24-travel-control-slide-prev']")
     WebElement prevMonthButton;
     @FindBy(xpath = "//*[@class='c24-travel-js-control-slide-next c24-travel-control-slide-next']")
     WebElement nextMonthButton;
-    @FindBy(xpath = "//*[@id='c24-travel-travel-day-element']")
+    @FindBy(xpath = "//*[text()='Reisedauer']")
     WebElement reiseDauerButton;
     @FindBy(xpath = "//*[@id='c24-travel-duration-1']")
     WebElement exakteReisedatenRadioButton;
@@ -56,6 +60,8 @@ public class ReisePage extends BasePage {
     WebElement vonRadioBatton;
     @FindBy(xpath = "//*[@id='c24-travel-custom-range-to']")
     WebElement bisRadioBatton;
+    @FindBy(xpath = "//*[@class='c24-travel-primary-cta-button c24-travel-duration-layer-button c24-travel-btn-use-duration-value']")
+    WebElement reiseDauerÜbernehmenButton;
     @FindBy(xpath = "//*[@id='c24-travel-traveler-detail-btn']")
     WebElement reisendeButton;
     @FindBy(xpath = "//*[@class='c24-travel-select-less']")
@@ -104,6 +110,7 @@ public class ReisePage extends BasePage {
     public void setClickOnFirstElementFlugAb() {
         getWait().forClickable(clickOnFirstElementFlugAb);
         clickOnFirstElementFlugAb.click();
+        übernehmenButtonOnFlugAbField.click();
     }
 
     private void slowType(WebElement element, String text) {
@@ -113,48 +120,37 @@ public class ReisePage extends BasePage {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void hoverOverElementOnReisePageVonAnFlug(WebDriver driver) {
-        WebElement elementToHover = driver.findElement(By.xpath("//*[@id='c24-travel-react-airport-layer']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(elementToHover).perform();
-    }
-
-
     public void clickOnReiseZeitReaumButton() {
-        reiseDauerButton.click();
+        reiseDatumButton.click();
     }
-
-    public void hoverOverElementOnReisePageReiseZeitRaum(WebDriver driver) {
-        WebElement elementToHover = driver.findElement(By.xpath("//*[@class='c24-travel-js-datefinder c24-travel-datefinder c24-travel-datepicker-instance-element c24-travel-c24-hidden']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(elementToHover).perform();
+    public void waitForVisabilityOfData(){
+        getWait().forVisibility(switchToWindowData);
     }
+    public void prevMonthButtonClick() throws InterruptedException {
+        prevMonthButton.click();
+        Thread.sleep(1000);
 
+    }
+    public void nextMonthButtonClick() throws InterruptedException {
+        nextMonthButton.click();
+        Thread.sleep(1000);
+    }
+    public void chooseTheDayAndMonthOfTravelStart(DaysOnTheCalendar days, MonthsOnTheCalendar months){
+        driver.findElement(By.xpath("//*[@data-first-day='"+months.listOfMonths+"']//*[@data-day='"+days.listOfDays+"']")).click();
+    }
+    public void chooseTheDayAndMonthOfTravelFinish(DaysOnTheCalendar days, MonthsOnTheCalendar months){
+        driver.findElement(By.xpath("//*[@data-first-day='"+months.listOfMonths+"']//*[@data-day='"+days.listOfDays+"']")).click();
+
+    }
     public void clickOnReiseDauer() {
         reiseDauerButton.click();
     }
 
-    public void hoverOverElementOnReisePageReiseDauer(WebDriver driver) {
-        WebElement elementToHover = driver.findElement(By.xpath("//*[@class='c24-travel-duration-layer c24-travel-c24-hidden c24-travel-pos-arrow-bottom']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(elementToHover).perform();
+    public void inputGenauTage(int tage){
+        genauRadioButton.sendKeys(String.valueOf(tage));
+        reiseDauerÜbernehmenButton.click();
     }
+
 
     public void chooseOptionsOnReiseDauer() {
         exakteReisedatenRadioButton.click();

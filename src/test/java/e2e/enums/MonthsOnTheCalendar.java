@@ -17,16 +17,14 @@ public enum MonthsOnTheCalendar {
     OKTOBER("01.10.2024"),
     NOVEMBER("01.11.2024"),
     DEZEMBER("01.12.2024");
-
-
-
-    private final String listOfMonths;
+    public final String listOfMonths;
 
     MonthsOnTheCalendar(String listOfMonths) {
-        this.listOfMonths = "//*[@data-first-day='" + listOfMonths + "']//*";
+        this.listOfMonths = listOfMonths;
     }
-    public String getListOfMonths(){
+    public String getListlistOfMonths(){
         return listOfMonths;
     }
+
 }
 
