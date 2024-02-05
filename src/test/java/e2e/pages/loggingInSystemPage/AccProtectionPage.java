@@ -4,6 +4,7 @@ import e2e.pages.loggingInSystemPage.LoginDialogPassword;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class AccProtectionPage extends LoginDialogPassword {
     public AccProtectionPage(WebDriver driver) {
@@ -40,6 +41,9 @@ public class AccProtectionPage extends LoginDialogPassword {
 
     public void takeScreenshotUserDataOnAccProtectionPage(){
         takeAndCompareScreenshot("Comprasion_Email_With_Entered_On_AccProtectionPage",userDataOnProtectionPage);
+    }
+    public void assertHeaderVisibility() {
+        Assert.assertTrue( headerOnAccProtectionPage.isDisplayed(),"Header on home page is not visible!");
     }
 
 }

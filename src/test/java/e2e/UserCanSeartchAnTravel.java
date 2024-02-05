@@ -8,7 +8,14 @@ import e2e.pages.loggingInSystemPage.LoginDialogEmail;
 import e2e.pages.loggingInSystemPage.LoginDialogPassword;
 import e2e.pages.loggingInSystemPage.StartPage;
 import e2e.pages.reisePage.ReisePage;
+import e2e.seartchPage.SeartchPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import javax.naming.directory.SearchResult;
+import java.util.List;
 
 public class UserCanSeartchAnTravel extends BaseTest{
     StartPage startPage;
@@ -17,6 +24,23 @@ public class UserCanSeartchAnTravel extends BaseTest{
     AccProtectionPage accProtectionPage;
     HomePage homePage;
     ReisePage reisePage;
+    SeartchPage seartchPage;
+
+    public void testSearchResultsLocations() {
+        List<WebElement> searchResults = seartchPage.getSearchResult();
+        Assert.assertFalse(searchResults.isEmpty(), "Search results list is empty");
+        String expectedLocation = "Berlin, Berlin";
+        for (WebElement resultElement : searchResults) {
+            WebElement locationElement = resultElement.findElement(By.xpath("//*[text()='Berlin, Berlin']"));
+            String location = locationElement.getText();
+            Assert.assertEquals(location, expectedLocation, "Unexpected location in search results");
+//            if (location.equals(expectedLocation)) {
+//                System.out.println("Location matches expected: " + location);
+//            } else {
+//                System.out.println("Location does not match expected: " + location);
+//            }
+        }
+    }
 
 
     @Test
@@ -45,6 +69,7 @@ public class UserCanSeartchAnTravel extends BaseTest{
         loginDialogPassword.inputPasswordAndLoggingInSystem(password);
         accProtectionPage = new AccProtectionPage(app.driver);
         accProtectionPage.waiteForLoadingOnAccProtectionPage();
+        accProtectionPage.assertHeaderVisibility();
         accProtectionPage.clickOnRemindMeLaterButton();
         homePage = new HomePage(app.driver);
         homePage.waitForLoadingOnHomePage();
@@ -64,6 +89,12 @@ public class UserCanSeartchAnTravel extends BaseTest{
         reisePage.waitForVisabilityOfData();
         reisePage.chooseTheDayAndMonthOfTravelFinish(DaysOnTheCalendar.Enamuary_9th,MonthsOnTheCalendar.APRIL);
         reisePage.clickOnSuchenButton();
+        seartchPage = new SeartchPage(app.driver);
+        seartchPage.waiteForLoadingSearchPage();
+        testSearchResultsLocations();
+
+
+
 
 
 

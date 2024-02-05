@@ -2,11 +2,11 @@ package e2e.pages.reisePage;
 
 import e2e.enums.DaysOnTheCalendar;
 import e2e.enums.MonthsOnTheCalendar;
-import e2e.enums.OnlyNameOfMonths;
 import e2e.pages.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class ReisePage extends BasePage {
     public ReisePage(WebDriver driver) {
@@ -16,7 +16,7 @@ public class ReisePage extends BasePage {
     @FindBy(xpath = "//*[@id='c24-header']")
     WebElement headerOnReisePage;
     @FindBy(xpath = "//*[@id='c24-travel-bubble-ele-package']")
-    WebElement resieHeader;
+    WebElement reiseHeader;
 
     @FindBy(xpath = "//*[@id='c24-travel-destination-element']")
     WebElement reiseZielField;
@@ -80,7 +80,7 @@ public class ReisePage extends BasePage {
 
     public void waiteForLoadingReisePage() {
         getWait().forVisibility(headerOnReisePage);
-        getWait().forVisibility(resieHeader);
+        getWait().forVisibility(reiseHeader);
         getWait().forVisibility(reiseZielField);
         getWait().forVisibility(clickOnFlugAbField);
         getWait().forVisibility(reiseDatumButton);
@@ -88,6 +88,11 @@ public class ReisePage extends BasePage {
         getWait().forVisibility(suchenButton);
         getWait().forClickable(suchenButton);
         getWait().forClickable(resetReiseZiel);
+    }
+    public void assertHeaderVisibility() {
+        Assert.assertTrue(headerOnReisePage.isDisplayed(),"Header on reise Page is not visible!");
+        Assert.assertTrue(reiseHeader.isDisplayed(),"Header on reise Page is not visible!");
+        Assert.assertTrue(suchenButton.isDisplayed(),"Suchen button on reise Page is not visible!");
     }
 
 
@@ -125,6 +130,7 @@ public class ReisePage extends BasePage {
     }
     public void waitForVisabilityOfData(){
         getWait().forVisibility(switchToWindowData);
+        Assert.assertTrue(switchToWindowData.isDisplayed(),"Switch to window data is not visible!");
     }
     public void prevMonthButtonClick() throws InterruptedException {
         prevMonthButton.click();
