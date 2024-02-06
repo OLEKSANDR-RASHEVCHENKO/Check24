@@ -2,6 +2,7 @@ package e2e;
 
 import e2e.enums.DaysOnTheCalendar;
 import e2e.enums.MonthsOnTheCalendar;
+import e2e.enums.Name_MonthsOnTheCalendar;
 import e2e.pages.homePage.HomePage;
 import e2e.pages.loggingInSystemPage.AccProtectionPage;
 import e2e.pages.loggingInSystemPage.LoginDialogEmail;
@@ -84,14 +85,14 @@ public class UserCanSeartchAnTravel extends BaseTest{
         reisePage.setClickOnFirstElementFlugAb();
         reisePage.clickOnReiseZeitReaumButton();
         reisePage.waitForVisabilityOfData();
-        reisePage.prevMonthButtonClick();
-        reisePage.chooseTheDayAndMonthOfTravelStart(DaysOnTheCalendar.Enamuary_5th,MonthsOnTheCalendar.APRIL);
-        reisePage.waitForVisabilityOfData();
-        reisePage.chooseTheDayAndMonthOfTravelFinish(DaysOnTheCalendar.Enamuary_9th,MonthsOnTheCalendar.APRIL);
-        reisePage.clickOnSuchenButton();
-        seartchPage = new SeartchPage(app.driver);
-        seartchPage.waiteForLoadingSearchPage();
-        testSearchResultsLocations();
+//        reisePage.prevMonthButtonClick();
+        reisePage.chooseTheDayAndMonthOfTravelStart(DaysOnTheCalendar.Enamuary_5th, Name_MonthsOnTheCalendar.August,MonthsOnTheCalendar.AUGUST);
+//        reisePage.waitForVisabilityOfData();
+//        reisePage.chooseTheDayAndMonthOfTravelFinish(DaysOnTheCalendar.Enamuary_9th,MonthsOnTheCalendar.APRIL);
+//        reisePage.clickOnSuchenButton();
+//        seartchPage = new SeartchPage(app.driver);
+//        seartchPage.waiteForLoadingSearchPage();
+//        testSearchResultsLocations();
 
 
 

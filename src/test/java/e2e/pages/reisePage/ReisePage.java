@@ -2,6 +2,7 @@ package e2e.pages.reisePage;
 
 import e2e.enums.DaysOnTheCalendar;
 import e2e.enums.MonthsOnTheCalendar;
+import e2e.enums.Name_MonthsOnTheCalendar;
 import e2e.pages.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -89,10 +90,11 @@ public class ReisePage extends BasePage {
         getWait().forClickable(suchenButton);
         getWait().forClickable(resetReiseZiel);
     }
+
     public void assertHeaderVisibility() {
-        Assert.assertTrue(headerOnReisePage.isDisplayed(),"Header on reise Page is not visible!");
-        Assert.assertTrue(reiseHeader.isDisplayed(),"Header on reise Page is not visible!");
-        Assert.assertTrue(suchenButton.isDisplayed(),"Suchen button on reise Page is not visible!");
+        Assert.assertTrue(headerOnReisePage.isDisplayed(), "Header on reise Page is not visible!");
+        Assert.assertTrue(reiseHeader.isDisplayed(), "Header on reise Page is not visible!");
+        Assert.assertTrue(suchenButton.isDisplayed(), "Suchen button on reise Page is not visible!");
     }
 
 
@@ -109,7 +111,7 @@ public class ReisePage extends BasePage {
     public void vonAbFlugFieldClick(String vonWo) {
         clickOnFlugAbField.click();
         alleAbflugHäfenLöshen.click();
-        slowType(inputAbflugHäfenField,vonWo);
+        slowType(inputAbflugHäfenField, vonWo);
     }
 
     public void setClickOnFirstElementFlugAb() {
@@ -128,31 +130,71 @@ public class ReisePage extends BasePage {
     public void clickOnReiseZeitReaumButton() {
         reiseDatumButton.click();
     }
-    public void waitForVisabilityOfData(){
+
+    public void waitForVisabilityOfData() {
         getWait().forVisibility(switchToWindowData);
-        Assert.assertTrue(switchToWindowData.isDisplayed(),"Switch to window data is not visible!");
+        Assert.assertTrue(switchToWindowData.isDisplayed(), "Switch to window data is not visible!");
     }
+
     public void prevMonthButtonClick() throws InterruptedException {
         prevMonthButton.click();
         Thread.sleep(1000);
 
     }
+
     public void nextMonthButtonClick() throws InterruptedException {
         nextMonthButton.click();
         Thread.sleep(1000);
     }
-    public void chooseTheDayAndMonthOfTravelStart(DaysOnTheCalendar days, MonthsOnTheCalendar months){
-        driver.findElement(By.xpath("//*[@data-first-day='"+months.listOfMonths+"']//*[@data-day='"+days.listOfDays+"']")).click();
-    }
-    public void chooseTheDayAndMonthOfTravelFinish(DaysOnTheCalendar days, MonthsOnTheCalendar months){
-        driver.findElement(By.xpath("//*[@data-first-day='"+months.listOfMonths+"']//*[@data-day='"+days.listOfDays+"']")).click();
+//    public void chooseTheDayAndMonthOfTravelStart(DaysOnTheCalendar days, MonthsOnTheCalendar months){
+//        driver.findElement(By.xpath("//*[@data-first-day='"+months.listOfMonths+"']//*[@data-day='"+days.listOfDays+"']")).click();
+//    }
+//    public void chooseTheDayAndMonthOfTravelFinish(DaysOnTheCalendar days, MonthsOnTheCalendar months){
+//        driver.findElement(By.xpath("//*[@data-first-day='"+months.listOfMonths+"']//*[@data-day='"+days.listOfDays+"']")).click();
+//
+//    }
 
+
+    public void chooseTheDayAndMonthOfTravelStart(DaysOnTheCalendar days, Name_MonthsOnTheCalendar months,MonthsOnTheCalendar chooseMonths) throws InterruptedException {
+        String currentMonthDisplayed = getCurrentMonthDisplayed();
+        int monthsToNavigate = calculateMonthsToNavigate(currentMonthDisplayed, months);
+        for (int i = 0; i < Math.abs(monthsToNavigate); i++) {
+            if (monthsToNavigate > 0) {
+                nextMonthButtonClick();
+            } else {
+                prevMonthButtonClick();
+            }
+        }
+        // Теперь выбираем день
+        driver.findElement(By.xpath("//*[@data-first-day='"+chooseMonths.listOfMonths+"']//*[@data-day='"+days.listOfDays+"']"))
+                .click();
     }
+
+
+
+
+
+    public String getCurrentMonthDisplayed() {
+        WebElement monthElement = driver.findElement(By.xpath("//*[@class='c24-travel-js-month c24-travel-month c24-travel-weekrow-count-6 c24-travel-js-first-visible-month']//*[@class='c24-travel-month-head']"));
+        return monthElement.getText();
+    }
+
+    private int calculateMonthsToNavigate(String currentMonth, Name_MonthsOnTheCalendar targetMonth) {
+        int currentMonthIndex = Name_MonthsOnTheCalendar.valueOf(currentMonth).ordinal();
+        int targetMonthIndex = targetMonth.ordinal();
+        int monthsToNavigate = targetMonthIndex - currentMonthIndex;
+        if (monthsToNavigate < 0) {
+            monthsToNavigate += Name_MonthsOnTheCalendar.values().length;
+        }
+        return monthsToNavigate;
+    }
+
+
     public void clickOnReiseDauer() {
         reiseDauerButton.click();
     }
 
-    public void inputGenauTage(int tage){
+    public void inputGenauTage(int tage) {
         genauRadioButton.sendKeys(String.valueOf(tage));
         reiseDauerÜbernehmenButton.click();
     }
