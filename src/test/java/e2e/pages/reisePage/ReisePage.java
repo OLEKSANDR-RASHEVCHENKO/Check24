@@ -190,7 +190,7 @@ public class ReisePage extends BasePage {
     }
 
 
-    public void clickOnReiseDauer() {
+    public void clickOnReiseDauee() {
         reiseDauerButton.click();
     }
 
