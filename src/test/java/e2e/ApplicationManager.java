@@ -16,6 +16,7 @@ public class ApplicationManager {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+
 //    protected  void stop(){
 //        driver.quit();
 //    }
