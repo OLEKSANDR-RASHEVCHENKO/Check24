@@ -11,13 +11,13 @@ import e2e.pages.loggingInSystemPage.StartPage;
 import e2e.pages.reisePage.ReisePage;
 import e2e.seartchPage.SeartchPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import javax.naming.directory.SearchResult;
 import java.util.List;
+
+import static org.testng.Assert.assertEquals;
 
 public class UserCanSeartchAnTravel extends BaseTest{
     StartPage startPage;
@@ -27,6 +27,9 @@ public class UserCanSeartchAnTravel extends BaseTest{
     HomePage homePage;
     ReisePage reisePage;
     SeartchPage seartchPage;
+
+
+
 
     public void testSearchResultsLocations() throws InterruptedException {
         List<WebElement> searchResults = seartchPage.getSearchResult();
@@ -38,7 +41,7 @@ public class UserCanSeartchAnTravel extends BaseTest{
             if (!locationElements.isEmpty()) {
                 for (WebElement locationElement : locationElements) {
                     String location = locationElement.getText();
-                    Assert.assertEquals(location, expectedLocation, "Unexpected location in search results");
+                    assertEquals(location, expectedLocation, "Unexpected location in search results");
                     if (location.equals(expectedLocation)) {
                         System.out.println("Location matches expected: " + location);
                     } else {
@@ -102,5 +105,10 @@ public class UserCanSeartchAnTravel extends BaseTest{
         seartchPage.waiteForLoadingSearchPage();
         seartchPage.assertHeaderVisibility();
         testSearchResultsLocations();
+        seartchPage.setMinPriceOnSortDropDown();
+        seartchPage.hotelMinimumPriceComparison();
+
+
+
     }
 }
