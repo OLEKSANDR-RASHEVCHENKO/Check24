@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
-public class UserCanSeartchAnTravel extends BaseTest{
+public class UserCanSearchAnTravel extends BaseTest{
     StartPage startPage;
     LoginDialogEmail loginDialogEmail;
     LoginDialogPassword loginDialogPassword;
@@ -34,6 +34,7 @@ public class UserCanSeartchAnTravel extends BaseTest{
     public void testSearchResultsLocations() throws InterruptedException {
         List<WebElement> searchResults = seartchPage.getSearchResult();
         Assert.assertFalse(searchResults.isEmpty(), "Search results list is empty");
+        Thread.sleep(1000);
         seartchPage.scrollDownAndUp();
         String expectedLocation = "Berlin, Berlin";
         for (WebElement resultElement : searchResults) {
@@ -107,6 +108,7 @@ public class UserCanSeartchAnTravel extends BaseTest{
         testSearchResultsLocations();
         seartchPage.setMinPriceOnSortDropDown();
         seartchPage.hotelMinimumPriceComparison();
+        seartchPage.hotelMaximumPriceComparison();
 
 
 

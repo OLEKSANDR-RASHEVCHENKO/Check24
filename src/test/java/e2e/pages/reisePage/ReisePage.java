@@ -111,7 +111,8 @@ public class ReisePage extends BasePage {
     public void vonAbFlugFieldClick(String vonWo) {
         clickOnFlugAbField.click();
         alleAbflugHäfenLöshen.click();
-        slowType(inputAbflugHäfenField, vonWo);
+//        slowType(inputAbflugHäfenField, vonWo);
+        inputAbflugHäfenField.sendKeys(vonWo);
     }
 
     public void setClickOnFirstElementFlugAb() {
@@ -137,6 +138,10 @@ public class ReisePage extends BasePage {
     }
 
     public void prevMonthButtonClick() throws InterruptedException {
+        prevMonthButton.click();
+        Thread.sleep(1000);
+        prevMonthButton.click();
+        Thread.sleep(1000);
         prevMonthButton.click();
         Thread.sleep(1000);
 
