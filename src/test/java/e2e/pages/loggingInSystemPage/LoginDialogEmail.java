@@ -4,6 +4,7 @@ import e2e.pages.loggingInSystemPage.StartPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class LoginDialogEmail extends StartPage {
     public LoginDialogEmail(WebDriver driver) {
@@ -17,6 +18,12 @@ public class LoginDialogEmail extends StartPage {
     WebElement weiterButton;
     @FindBy(xpath = "//div[@class='c24-uli-loginlayer']//iframe")
     WebElement iframe;
+    @FindBy(xpath = "//*[@class='c24-uli-input-wrapper c24-uli-input-wrapper-email c24-uli-input-info']//*[@class='c24-uli-error c24-uli-error-email']")
+    WebElement errorMessageEmail;
+    public void isErrorMessageDisplayed(){
+        getWait().forVisibility(errorMessageEmail);
+        Assert.assertTrue(errorMessageEmail.isDisplayed(), "ErrorMessageEmail is not visible!");
+    }
 
     public void switchToIframe() {
         driver.switchTo().frame(iframe);

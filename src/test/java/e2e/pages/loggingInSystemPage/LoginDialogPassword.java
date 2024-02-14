@@ -21,6 +21,7 @@ public class LoginDialogPassword extends LoginDialogEmail {
     @FindBy(xpath = "//*[text()='ohne Passwort anmelden']")
     WebElement ohnePasswordAnmeldenButton;
 
+
     public void waiteForLoading(){
         getWait().forVisibility(headerWillkomen);
         getWait().forVisibility(passwordInputField);
