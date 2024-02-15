@@ -1,6 +1,5 @@
 package e2e.pages.loggingInSystemPage;
 
-import e2e.pages.loggingInSystemPage.LoginDialogPassword;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +14,7 @@ public class AccProtectionPage extends LoginDialogPassword {
     @FindBy(xpath = "//*[@data-tid='user-data']")
     WebElement userDataOnProtectionPage;
     @FindBy(xpath = "//*[@id='cl_sld_prefix']")
-    WebElement countryCodePhone;
+    WebElement countryCodePhoneField;
     @FindBy(xpath = "//*[@id='cl_sld']")
     WebElement phoneInput;
     @FindBy(xpath = "//*[text()='Mobiltelefonnummer hinzufügen']")
@@ -30,7 +29,7 @@ public class AccProtectionPage extends LoginDialogPassword {
         getWait().forClickable(remindMeLaterButton);
     }
     public void setPhoneInfo(String countryCode,String number){
-        countryCodePhone.sendKeys(countryCode);
+        countryCodePhoneField.sendKeys(countryCode);
         phoneInput.sendKeys(number);
         addPhoneNumberButton.click();
     }
