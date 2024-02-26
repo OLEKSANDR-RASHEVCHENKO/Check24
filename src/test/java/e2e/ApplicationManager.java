@@ -17,7 +17,7 @@ public class ApplicationManager {
     }
 
 
-//    protected  void stop(){
-//        driver.quit();
-//    }
+    protected  void stop(){
+        driver.quit();
+    }
 }
